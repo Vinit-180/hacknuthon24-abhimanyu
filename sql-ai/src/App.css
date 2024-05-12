@@ -45,7 +45,10 @@
   color: white;
   margin: 0;
   padding: 0;
+    /* background: linear-gradient(to right, #0f2027, #203a43, #2c5364); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
+
 .main-container h1{
   text-align: center;
 }
@@ -99,4 +102,22 @@
   background-color: rgb(255, 215, 255);  
   color: black;
   box-shadow: rgb(139, 65, 208) 0px 0px 0px 2px, rgb(139, 65, 208) 0px 4px 6px -1px, rgb(139, 65, 208)0px 1px 0px inset; 
+}
+
+.noData{
+  text-align: center;
+  align-items: center;
+}
+
+.givenQuery{
+  margin: auto;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  /* justify-content: center; */
+}
+.givenQ{
+  margin: 0 20px ;
+  text-align: center;
 }

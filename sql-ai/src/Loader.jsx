@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Loader.css"; // Import CSS for styling
-import loaderImg from "./blue.png";
+// import loaderImg from "./blue.png";
 function Loader() {
   const [boxes, setBoxes] = useState([]);
 
@@ -72,7 +72,7 @@ function Loader() {
         href="https://dribbble.com/shots/7227469-3D-Boxes-Loader"
         target="_blank"
       >
-        <img src="https://dribbble.com/assets/logo-small-2x-9fe74d2ad7b25fba0f50168523c15fda4c35534f9ea0b1011179275383035439.png" />
+        {/* <img src="https://dribbble.com/assets/logo-small-2x-9fe74d2ad7b25fba0f50168523c15fda4c35534f9ea0b1011179275383035439.png" /> */}
       </a>
     </div>
   );
