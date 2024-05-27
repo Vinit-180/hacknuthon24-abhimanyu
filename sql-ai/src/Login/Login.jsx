@@ -59,11 +59,11 @@ const Login = () => {
               className="col-md-6 rounded px-8 pt-6 pb-8 mb-4 "
               onSubmit={handleSubmit(submit)}
             >
-              <h1 className="bg-black-600 mb-2 mt-2 ">User Login</h1>
+              <h1 className="bg-black-600 text-white mb-2 mt-2 ">User Login</h1>
               <div>
                 <div class="mb-4">
                   <label
-                    class="block text-gray-700 text-sm font-bold mb-2"
+                    class="block text-white text-sm font-bold mb-2"
                     for="username"
                   >
                     Username
@@ -78,7 +78,7 @@ const Login = () => {
                 </div>
                 <div class="mb-6">
                   <label
-                    class="block text-gray-700 text-sm font-bold mb-2"
+                    class="block text-white text-sm font-bold mb-2"
                     for="password"
                   >
                     Password
@@ -105,7 +105,7 @@ const Login = () => {
         Forgot Password?
       </a> */}
                 </div>
-                <span className="">
+                <span className="text-white">
                   Haven't Registered?
                   <button
                     className="btn btn-link"
@@ -129,11 +129,11 @@ const Login = () => {
               className="col-md-6 rounded px-8 pt-6 pb-8 mb-4 "
               onSubmit={form2.handleSubmit(submit1)}
             >
-              <h1 className="bg-black-600 mb-2 mt-2 ">User Sign up</h1>
+              <h1 className="bg-black-600 text-white mb-2 mt-2 ">User Sign up</h1>
               <div>
                 <div class="mb-4">
                   <label
-                    class="block text-gray-700 text-sm font-bold mb-2"
+                    class="block text-white text-sm font-bold mb-2"
                     for="username"
                   >
                     Email
@@ -148,7 +148,7 @@ const Login = () => {
                 </div>
                 <div class="mb-6">
                   <label
-                    class="block text-gray-700 text-sm font-bold mb-2"
+                    class="block text-white text-sm font-bold mb-2"
                     for="password"
                   >
                     Password
@@ -166,7 +166,7 @@ const Login = () => {
                 </div>
                 <div class="mb-6">
                   <label
-                    class="block text-gray-700 text-sm font-bold mb-2"
+                    class="block text-white text-sm font-bold mb-2"
                     for="password"
                   >
                     Confirm Password
@@ -190,7 +190,7 @@ const Login = () => {
                     Sign Up
                   </button>
                 </div>
-                <span className="">
+                <span className="text-white">
                   Already Registered?
                   <button
                     className="btn btn-link"

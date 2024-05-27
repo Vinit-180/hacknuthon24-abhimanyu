@@ -17,11 +17,11 @@ import jwt
 
 # Flask constructor takes the name of 
 # current module (__name__) as argument.
-
-app = Flask(__name__)
-init_app(app)
-app.debug = True
-app.config['SECRET_KEY'] = 'SQL-AI'
+from config import app
+# app = Flask(__name__)
+# init_app(app)
+# app.debug = True
+# app.config['SECRET_KEY'] = 'SQL-AI'
 # client = MongoClient('mongodb+srv://vinitchokshi1809:cwAd7ngKl97CVD1C@aisqlquery.azplws7.mongodb.net/') 
 # db=client['AI_SQL']
 CORS(app)
@@ -268,10 +268,12 @@ def login():
         data=request.get_json()
         email=data.get('email')
         password=data.get('password')
-
+        # user=user()
+        user=User.find_by_email(email,password)
+        print("-------",user)
         if not email or not password:
             return json.dumps({'error': 'Missing required fields'}), 400
-        elif(User.find_by_email(email,password)):
+        elif user:
             token=jwt.encode(
                     {"user_id": email},
                     app.config["SECRET_KEY"],
@@ -279,7 +281,7 @@ def login():
                 )
             # print(token)
             return json.dumps({'message':"User Successfully logged","user":token}),201
-            
+        return json.dumps({"message":"NO user found"}),404
             # print(User.find_by_email(email,password))
     except Exception as e:
         return json.dumps({'error':e}),500
@@ -287,22 +289,22 @@ def login():
 @app.route('/signup',methods=['POST'])
 def signup():
     try:
-        print("h")
         data=request.get_json()
         email=data.get('email')
         password=data.get('password')
-
+        
         if User.find_by_email_for_Signup(email):
             return json.dumps({'error': 'Email already exists'}), 400
-        new_user = User(email, password)
-        new_user.save()
-        token=jwt.encode(
-                    {"user_id": email},
-                    app.config["SECRET_KEY"],
-                    algorithm="HS256"
-                )
-        return json.dumps({'message':"User Account Created Successfully","user":token}),201
-    
+        new_user =User()
+        new_user=new_user.save(data)
+        if new_user:
+            token=jwt.encode(
+                        {"user_id": email},
+                        app.config["SECRET_KEY"],
+                        algorithm="HS256"
+                    )
+            return json.dumps({'message':"User Account Created Successfully","user":token}),201
+        return json.dumps({"message":"Error to create account`"}),401
     except Exception as e:
         return json.dumps({'error':str(e)}),500
 
