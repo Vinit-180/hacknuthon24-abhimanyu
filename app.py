@@ -12,6 +12,7 @@ import random
 import time
 import re
 from models import User,init_app
+import jwt
 
 
 # Flask constructor takes the name of 
@@ -20,6 +21,7 @@ from models import User,init_app
 app = Flask(__name__)
 init_app(app)
 app.debug = True
+app.config['SECRET_KEY'] = 'SQL-AI'
 # client = MongoClient('mongodb+srv://vinitchokshi1809:cwAd7ngKl97CVD1C@aisqlquery.azplws7.mongodb.net/') 
 # db=client['AI_SQL']
 CORS(app)
@@ -269,7 +271,16 @@ def login():
 
         if not email or not password:
             return json.dumps({'error': 'Missing required fields'}), 400
-        return json.dumps({'message':"User Successfully logged"}),201
+        elif(User.find_by_email(email,password)):
+            token=jwt.encode(
+                    {"user_id": email},
+                    app.config["SECRET_KEY"],
+                    algorithm="HS256"
+                )
+            # print(token)
+            return json.dumps({'message':"User Successfully logged","user":token}),201
+            
+            # print(User.find_by_email(email,password))
     except Exception as e:
         return json.dumps({'error':e}),500
     
@@ -281,12 +292,16 @@ def signup():
         email=data.get('email')
         password=data.get('password')
 
-        if User.find_by_email(email):
+        if User.find_by_email_for_Signup(email):
             return json.dumps({'error': 'Email already exists'}), 400
         new_user = User(email, password)
         new_user.save()
-
-        return json.dumps({'message':"User Account Created Successfully"}),201
+        token=jwt.encode(
+                    {"user_id": email},
+                    app.config["SECRET_KEY"],
+                    algorithm="HS256"
+                )
+        return json.dumps({'message':"User Account Created Successfully","user":token}),201
     
     except Exception as e:
         return json.dumps({'error':str(e)}),500

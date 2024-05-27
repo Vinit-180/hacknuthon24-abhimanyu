@@ -20,7 +20,7 @@ function App() {
 export default App;
 
 
-{/*
+/*
   const [apiData,setApiData]=useState();
   const [result,setResult]=useState();
   const [showData,setShowData]=useState();
@@ -243,4 +243,4 @@ export default App;
                 </div> 
         </div>
         </div>
-*/}
+*/
